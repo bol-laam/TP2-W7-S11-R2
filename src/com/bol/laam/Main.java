@@ -6,6 +6,16 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        boolean isRestart = true;
+
+        while (isRestart) {
+            isRestart = runProgram();
+        }
+
+        System.exit(0);
+    }
+
+    private static boolean runProgram() {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Belajar Deret Aritmatika, Geometri dan menghitung Faktorial\n");
@@ -14,14 +24,14 @@ public class Main {
         int printSize = input.nextInt();
         if (printSize < 2 || printSize > 10) {
             System.out.println("Maaf angka tidak valid!");
-            return;
+            return false;
         }
 
         System.out.print("Masukkan beda masing-masing angka [2..9]: ");
         int gapNumber = input.nextInt();
         if (gapNumber < 2 || gapNumber > 9) {
             System.out.println("Maaf angka tidak valid!");
-            return;
+            return false;
         }
 
         ArrayList<Integer> arithmeticNumbers = new ArrayList<>(List.of(1));
@@ -51,5 +61,17 @@ public class Main {
             factorialNumber = factorialNumber * i;
         }
         System.out.print(" = " + factorialNumber);
+
+        System.out.print("\n\nAnda ingin mengulang [y/t] : ");
+        String choose = input.next();
+        boolean isRestart = choose.equals("y") || choose.equals("Y");
+
+        if (isRestart) {
+            System.out.println("\n#############");
+            System.out.println("Restarting...");
+            System.out.println("#############\n");
+        }
+
+        return isRestart;
     }
 }
